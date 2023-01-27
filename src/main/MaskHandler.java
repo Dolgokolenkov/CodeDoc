@@ -11,7 +11,7 @@ public class MaskHandler {
         String regex="";
         for (var i=0;i<name.getBytes().length;i++){
             if(name.charAt(i)=='*'){
-                regex+="[A-z]*";
+                regex+="[^\\?*:|<>/]*";
             }
             else if(name.charAt(i)=='?'){
                 regex+=".";
