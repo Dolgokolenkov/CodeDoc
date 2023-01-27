@@ -74,7 +74,24 @@ public class MaskHandlerTest {
         Assert.assertEquals(handler.HandleMask("?*.??*","loldsadadasd.java",extensions),true);
         Assert.assertEquals(handler.HandleMask("?*.???","loldsadadasd.js",extensions),false);
     }
-
-
-
+    @Test
+    public void MaskWithNumbersAndOtherSymbols(){
+        Assert.assertEquals(handler.HandleMask("*.py","891212.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("89*.py","891212.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("89*.*","891212.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("hello*hi.*","hello891212hi.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("*.*","hello891212hi1.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("*.*","hello891212hi1.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("8?1.*","891.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("8?1.*","8923231.py",extensions),false);
+        Assert.assertEquals(handler.HandleMask("8?1.*","8923231.py",extensions),false);
+        Assert.assertEquals(handler.HandleMask("*.*","8-961-212-02-34.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("?-???-???-??-??.*","8-961-212-02-34.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("*-*-*-*-*.*","8-961-212-02-34.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("*_*_*_*_*.*","8_961_212_02_34.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("____*.*","____sdada232312.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("____*.*","___sdada232312.py",extensions),false);
+        Assert.assertEquals(handler.HandleMask("*?*?*?*?*?.*","8.961.212.02.34.py",extensions),true);
+        Assert.assertEquals(handler.HandleMask("*.*.*.*.*.*","8.961.212.02.34.py",extensions),true);
+    }
 }
